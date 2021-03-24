@@ -168,7 +168,7 @@ const sortPeople = (arr) => {
   arr.forEach((item) => {
     array.push(item);
   });
-  array.sort((a, b) => a.lastName.toLowerCase() > b.lastName.toLowerCase() ? 1 : -1)
+  array.sort((a, b) => a.lastName.toLowerCase() > b.lastName.toLowerCase() ? 1 : -1);
   return array;
 };
 
@@ -184,6 +184,12 @@ If two people have the same full name, the younger one should come first. Do not
 
 const sortPeopleBetter = (arr) => {
   // Solution code here...
+  let array = [];
+  arr.forEach((item) => {
+    array.push(item);
+  });
+  array.sort((a,b)=> a.firstName.toLowerCase() > b.firstName.toLowerCase() ? 1 : -1);
+  return array;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -210,7 +216,8 @@ const meetings = [
 
 const sortMeetingsByDay = (arr) => {
   // Solution code here...
-
+  arr.sort((a,b)=> a.dayOfWeek > b.dayOfWeek ? 1 : -1);
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -338,7 +345,7 @@ describe('Testing challenge 10', () => {
   });
 });
 
-xdescribe('Testing challenge 11', () => {
+describe('Testing challenge 11', () => {
   test('It should sort people with more strict ordering', () => {
     const family = [
       new Person('Casey', 'Codefellows', 55),
