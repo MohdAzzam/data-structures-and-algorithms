@@ -188,7 +188,7 @@ const sortPeopleBetter = (arr) => {
   arr.forEach((item) => {
     array.push(item);
   });
-  array.sort((a,b)=> a.firstName.toLowerCase() > b.firstName.toLowerCase() ? 1 : -1);
+  array.sort((a, b) => a.firstName.toLowerCase() > b.firstName.toLowerCase() ? 1 : -1);
   return array;
 };
 
@@ -212,11 +212,15 @@ const meetings = [
   new Meeting('Wednesday', '0930', '1000'),
   new Meeting('Monday', '0900', '0945'),
   new Meeting('Friday', '1200', '1345'),
+  // new Meeting('Friday', '1200', '1345'),
 ];
 
 const sortMeetingsByDay = (arr) => {
   // Solution code here...
-  arr.sort((a,b)=> a.dayOfWeek > b.dayOfWeek ? 1 : -1);
+  let arr2 = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+  arr.sort((a, b) => {
+    return arr2.indexOf(a.dayOfWeek) - arr2.indexOf(b.dayOfWeek);
+  });
   return arr;
 };
 
@@ -232,6 +236,11 @@ You DO NOT need to use your solution to Challenge 9 in completing Challenge 10.
 
 const sortSchedule = (arr) => {
   // Solution code here...
+  arr.sort((a, b) => {
+    return (a.end - a.start) - (b.end - b.start)
+  });
+  sortMeetingsByDay(arr);
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -366,7 +375,7 @@ describe('Testing challenge 11', () => {
   });
 });
 
-xdescribe('Testing challenge 12', () => {
+describe('Testing challenge 12', () => {
   test('It should sort meetings by the day on which they happen', () => {
     const sortedMeetings = sortMeetingsByDay(meetings);
     expect(sortedMeetings.slice(0, 2)).toEqual(expect.arrayContaining([new Meeting('Monday', '0900', '0945'), new Meeting('Monday', '0900', '1000')]));
@@ -376,7 +385,7 @@ xdescribe('Testing challenge 12', () => {
   });
 });
 
-xdescribe('Testing challenge 13', () => {
+describe('Testing challenge 13', () => {
   test('It should sort meetings by when they happen', () => {
     expect(sortSchedule(meetings)).toStrictEqual([
       new Meeting('Monday', '0900', '0945'),
